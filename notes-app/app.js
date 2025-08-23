@@ -25,8 +25,6 @@
 // console.log(validator.isURL("https://mead.io")); //Output: true
 // console.log(validator.isEmail("jgmail.com")); // Output: false
 
-// const getNotes = require("./notes"); //no need to add .js at the end
-
 // const notes = getNotes();
 // console.log(notes);
 
@@ -37,7 +35,8 @@
 // 4. Test your work
 // Bonus: Mess around with other StyleSheet, make text bold and inversed!
 
-// const chalk = require("chalk"); // npm install chalk@4 - this allows use of require() instead of import and w/o type module
+const getNotes = require("./notes"); //no need to add .js at the end
+const chalk = require("chalk"); // npm install chalk@4 - this allows use of require() instead of import and w/o type module
 // import chalk from "chalk" //pure ESM-only, can only work if package.json has type module
 
 // console.log(chalk.green("Success!"));
@@ -47,9 +46,61 @@
 
 const yargs = require("yargs");
 
-console.log(process.argv);
-console.log(yargs.argv);
+// Customize Yargs ver
+yargs.version("1.1.0");
 
+// create add command
+yargs.command({
+    command: "add",
+    describe: "add a new note",
+    builder: {
+        title: {
+            describe: "Note title",
+            demandOption: true,
+            type: "string",
+        },
+
+        body: {
+            describe: "Note body",
+            demandOption: true,
+            type: "string"
+        }
+    },
+    handler: function (argv) {
+        console.log("Title: " + argv.title);
+        console.log("Body: " + argv.body);
+    }
+})
+
+// create remove command
+yargs.command({
+    command: "remove",
+    describe: "removing note",
+    handler: function () {
+        console.log("Removing note!");
+    }
+})
+
+// create read command
+yargs.command({
+    command: "read",
+    describe: "reading note",
+    handler: function () {
+        console.log("Reading note!");
+    }
+})
+
+// create list command
+yargs.command({
+    command: "list",
+    describe: "listing notes",
+    handler: function () {
+        console.log("Listing notes!");
+    }
+})
+
+// console.log(yargs.argv);
+yargs.parse(); //prints everything on single line in terminal
 
 
 
