@@ -35,8 +35,7 @@
 // 4. Test your work
 // Bonus: Mess around with other StyleSheet, make text bold and inversed!
 
-const getNotes = require("./notes"); //no need to add .js at the end
-const chalk = require("chalk"); // npm install chalk@4 - this allows use of require() instead of import and w/o type module
+
 // import chalk from "chalk" //pure ESM-only, can only work if package.json has type module
 
 // console.log(chalk.green("Success!"));
@@ -44,6 +43,8 @@ const chalk = require("chalk"); // npm install chalk@4 - this allows use of requ
 // console.log(chalk.inverse.bold("Type Script!"));
 // console.log(chalk.red("Type Script!"));
 
+const notes = require("./notes"); //no need to add .js at the end
+const chalk = require("chalk"); // npm install chalk@4 - this allows use of require() instead of import and w/o type module
 const yargs = require("yargs");
 
 // Customize Yargs ver
@@ -67,8 +68,7 @@ yargs.command({
         }
     },
     handler: function (argv) {
-        console.log("Title: " + argv.title);
-        console.log("Body: " + argv.body);
+        notes.addNote(argv.title, argv.body)
     }
 })
 
@@ -76,8 +76,15 @@ yargs.command({
 yargs.command({
     command: "remove",
     describe: "removing note",
-    handler: function () {
-        console.log("Removing note!");
+    builder: {
+        title: {
+            describe: "Note title",
+            demandOption: true,
+            type: "string"
+        }
+    },
+    handler: function (argv) {
+        notes.removeNote(argv.title);
     }
 })
 
