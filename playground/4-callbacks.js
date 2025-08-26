@@ -28,52 +28,23 @@ geocode("Arizona", (data) => {
 });
 
 
-// ---------------
-// User
-// ---------------
+// Goal: Mess around with the callback pattern
+//
+// 1. Define an add function that accepts the correct arguments
+// 2. Use setTimeout to simulate a 2 second delay
+// 3. After 2 seconds are up, call the callback function with the sum
+// 4. Test your work!
 
-// Should not signup a user with email that is already in use
+const add = (x, y, callback) => {
+    
+    setTimeout(() => {
+        const sum = x + y;
 
-// Should login and provide authentication token
-
-// Should reject me query without authentication
-
-// Should hide emails when fetching list of users
-
-// ---------------
-// Post
-// ---------------
-
-// Should not be able to update another users post
-
-// Should not be able to delete another users post
-
-// Should require authentication to create a post (could add for update and delete too)
-
-// Should fetch published post by id 
-
-// Should fetch own post by id
-
-// Should not fetch draft post from other user
-
-// ---------------
-// Comment
-// ---------------
-
-// Should fetch post comments
-
-// Should create a new comment
-
-// Should not create comment on draft post
-
-// Should update comment
-
-// Should not update another users comment
-
-// Should not delete another users comment
-
-// Should require authentication to create a comment (could add for update and delete too)
+        callback(sum);
+    }, 2000)
+    
+}
 
 add(1, 4, (sum) => {
-    console.log(sum); //Output: 5
+    console.log(sum) // Should print: 5
 })
