@@ -113,7 +113,13 @@ yargs.command({
     }
 })
 
+
 // console.log(yargs.argv);
+
+//process.argv v yargs:
+//process.argv is a func that returns an array containing the args given to the current running Node process. 
+//yargs is a library for building command line interfaces.
+
 yargs.parse(); //prints everything on single line in terminal
 
 

@@ -26,7 +26,7 @@ const product = {
 // console.log(productLabel);
 // console.log(rating);
 
-const trans = (type, { label, stock = 0 } = {}) => {
+const trans = (type, { label, stock = 0 } = {}) => { //setting default value to stock 
     // const {label} = myProduct;
     console.log(type, label, stock);
 }

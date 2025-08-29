@@ -97,7 +97,7 @@ app.get("/products", (req, res) => { //products?key=value
     });
 })
 
-app.get("/help/*", (req, res) => {
+app.get("/help/*", (req, res) => { //* wildcard character, will match any path that starts with /help
     res.render("Help not found", {
         title: "404",
         name: "Jane",

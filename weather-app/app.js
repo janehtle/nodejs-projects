@@ -7,7 +7,7 @@ const address = process.argv[2];
 if (!address) {
     console.log("Please provide address.");
 } else {
-    geocode(address, (error, { latitude, longitude, location } = {}) => {
+    geocode(address, (error, { latitude, longitude, location } = {}) => { //object destructuring with a default empty object/undefined
         if (error) {
             return console.log(error);
         }

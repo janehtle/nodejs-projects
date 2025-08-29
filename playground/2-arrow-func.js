@@ -10,6 +10,8 @@
 
 // console.log(square(3));
 
+
+//you can assign obj to variable
 const event = {
     name: "Birthday",
     guests: ["Jane", "Khang", "Nia"],

@@ -70,13 +70,13 @@ const loadNotes = () => {
     try {
         const dataBuff = fs.readFileSync("notes.json");
         const dataJSON = dataBuff.toString();
-        return JSON.parse(dataJSON);
+        return JSON.parse(dataJSON); //parses a JSON string according to JSON grammar, then evaluates str as if it's a JS exp
     } catch (e) {
         return [];
     }
 }
 
-module.exports = { //exporting an object
+module.exports = { //exporting an object, better than listing this out line by line and taking up memory
     getNotes: getNotes,
     addNote: addNote,
     removeNote: removeNote,
