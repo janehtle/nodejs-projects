@@ -1,6 +1,8 @@
 const path = require("path");
 const express = require("express"); //express is a func
 const hbs = require("hbs");
+const geocode = require("./utils/geocode");
+const forecast = require("./utils/forecast");
 
 console.log(__dirname);
 console.log(path.join(__dirname, "../public"));
@@ -57,9 +59,41 @@ app.get("/help", (req, res) => {
 // })
 
 app.get("/weather", (req, res) => {
+    if (!req.query.address) {
+        return res.send({
+            error: "Please provide valid address."
+        });
+    }
+
+    geocode(req.query.address, (error, { latitude, longitude, location } = {}) => {
+        if (error) {
+            return res.send({error});
+        }
+
+        forecast(latitude, longitude, (error, forecastData) => {
+            if (error) {
+                return res.send({error});
+            }
+
+            res.send({
+                forecast: forecastData,
+                location,
+                address: req.query.address
+            });
+        })
+    })
+})
+
+app.get("/products", (req, res) => { //products?key=value
+    if (!req.query.search) {
+        res.send({
+            error: "Please provide valid search."
+        })
+    }
+
+    console.log(req.query.search); //returns what we are searching
     res.send({
-        forecast: "It is sunny",
-        location: "Greensboro"
+        products: []
     });
 })
 
