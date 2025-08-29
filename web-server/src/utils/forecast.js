@@ -10,7 +10,8 @@ const forecast = (latitude, longitude, callback) => {
         } else if (body.error) {
             callback("Unable to search.", undefined)
         } else {
-            callback(undefined, body.current.weather_descriptions[0] + ": It is currently " + body.current.temperature + " degrees out. " + "There is " + body.current.precip + "% chance of rain.")
+            console.log(body.daily.data);
+            callback(undefined, body.current.weather_descriptions[0] + ": It is currently " + body.current.temperature + " degrees out. " + "There is " + body.current.precip + "% chance of rain." + " The humidity is " + body.current.humidity + "%.")
         }
     })
 }
